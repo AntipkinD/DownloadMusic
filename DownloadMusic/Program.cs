@@ -11,6 +11,7 @@ internal class Program
     {
         bool ok = false;
         HttpClient client = new HttpClient();
+        await Console.Out.WriteLineAsync("Введите (вставьте) ссылку на скачивание песни");
         string httpath = Console.ReadLine();
         try
         {
@@ -20,6 +21,7 @@ internal class Program
             byte[] data = await response.Content.ReadAsByteArrayAsync();
             await File.WriteAllBytesAsync(path, data);
             ok = true;
+            await Console.Out.WriteLineAsync("Песня успешно загружена");
         }
         catch (Exception e)
         {
