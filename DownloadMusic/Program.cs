@@ -14,9 +14,10 @@ internal class Program
         string httpath = Console.ReadLine();
         try
         {
+            string path = $"D:/VSWorks/DownloadMusic/file{0}.mp3";
+            File.Delete(path);
             HttpResponseMessage response = await client.GetAsync(httpath);
             byte[] data = await response.Content.ReadAsByteArrayAsync();
-            string path = "D:/VSWorks/DownloadMusic/file1.mp3";
             await File.WriteAllBytesAsync(path, data);
             ok = true;
         }
@@ -29,7 +30,7 @@ internal class Program
         {
             ProcessStartInfo play = new ProcessStartInfo();
             play.FileName = "cmd";
-            play.Arguments = @"/c D:/VSWorks/DownloadMusic/file1.mp3";
+            play.Arguments = @$"/c D:/VSWorks/DownloadMusic/file{0}.mp3";
             Process.Start(play);
         }
     }
